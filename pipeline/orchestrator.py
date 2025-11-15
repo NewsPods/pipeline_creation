@@ -32,7 +32,7 @@ def run_pipeline_from_csv(csv_path: str, chunk_size: int = 50):
                 # append audio metadata and content into a record to later insert into DB.
                 rec = res["article_row"].copy()
                 # attach audio URL / key (we store object_name)
-                rec["audio_url"] = res["audio"]["object_name"]
+                rec["audio_url"] = res["audio"]["hls_playlist_object"]
                 successes.append(rec)
             else:
                 failures.append({"record": res["article_row"], "error": res.get("error")})

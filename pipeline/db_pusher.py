@@ -126,14 +126,27 @@ def push_articles_to_db(df: pd.DataFrame):
                 if 'audio_key' not in articles_df.columns:
                     articles_df['audio_key'] = None
 
-                insert_cols = ['title', 'description', 'news_source', 'created_at', 'audio_key']
+                if 'embedding' not in articles_df.columns:
+                    articles_df['embedding'] = None
+
+                insert_cols = ['title', 'description', 'news_source', 'created_at', 'audio_key','embedding']
                 articles_df = articles_df[insert_cols]
 
                 insert_query = text("""
-                    INSERT INTO public.articles (title, description, news_source, created_at, audio_key)
-                    VALUES (:title, :description, :news_source, :created_at, :audio_key)
-                    RETURNING article_id
-                """)
+                                    INSERT INTO public.articles (title,
+                                                                 description,
+                                                                 news_source,
+                                                                 created_at,
+                                                                 audio_key,
+                                                                 embedding)
+                                    VALUES (:title,
+                                            :description,
+                                            :news_source,
+                                            :created_at,
+                                            :audio_key,
+                                            :embedding) RETURNING article_id
+                                    """)
+
                 articles_records = articles_df.to_dict('records')
 
                 article_ids = []
