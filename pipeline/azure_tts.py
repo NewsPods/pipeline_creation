@@ -51,7 +51,17 @@ def synthesize_ssml_to_file(ssml: str, out_path: str):
     if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
         return out_path
     else:
-        err = result.error_details if hasattr(result, "error_details") else str(result.reason)
+        try:
+            cancellation = speechsdk.SpeechSynthesisCancellationDetails(result)
+            err = (
+                f"reason={cancellation.reason}, "
+                f"error_code={cancellation.error_code}, "
+                f"error_details={cancellation.error_details!r}"
+            )
+        except Exception:
+            # fallback if not cancellable
+            err = result.error_details if hasattr(result, "error_details") else str(result.reason)
+
         raise RuntimeError(f"Azure synthesis failed: {err}")
 
 

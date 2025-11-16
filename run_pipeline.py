@@ -5,7 +5,7 @@ import json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--csv", required=False, default="tests/sample_articles.csv",
+    parser.add_argument("--csv", required=False, default="tests/random_articles.csv",
                         help="Path to input CSV of articles")
     args = parser.parse_args()
 

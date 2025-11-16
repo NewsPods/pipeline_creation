@@ -1,67 +1,59 @@
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-IN">
-
   <voice name="en-IN-NeerjaNeural">
     <prosody rate="medium">
-      Hello and welcome to <emphasis level="strong">"Local Lens"</emphasis>, your weekly insight into India's vibrant community events!
-      <break time="400ms"/>
-      Today, we're taking you on a journey to the charming town of <emphasis level="strong">Shivpur</emphasis>, where the annual <emphasis level="moderate">"Gulmohar Utsav"</emphasis> recently wrapped up, leaving behind a trail of colorful memories.
-      <break time="750ms"/>
+      <p>
+        Organised crime gangs are now <emphasis>manufacturing their own branded weight-loss drugs</emphasis>.
+        <break time="300ms"/>
+        These products are meticulously designed to look exactly like legitimate medicines.
+        <break time="700ms"/>
+      </p>
     </prosody>
   </voice>
-
   <voice name="en-IN-PrabhatNeural">
     <prosody rate="medium">
-      This year's festival, held over a joyous weekend, transformed Shivpur's historic market square and riverfront into a bustling hub of culture, crafts, and culinary delights.
-      <break time="350ms"/>
-      From intricate hand-woven textiles to vibrant pottery, the Utsav truly celebrated the rich heritage of the region.
-      <break time="750ms"/>
+      <p>
+        The Medicines and Healthcare products Regulatory Agency, or MHRA, has issued a stark warning.
+        <break time="300ms"/>
+        They've just conducted the <emphasis>largest single seizure of trafficked weight-loss drugs</emphasis>, highlighting a significant threat to public health.
+        <break time="750ms"/>
+      </p>
     </prosody>
   </voice>
-
   <voice name="en-IN-NeerjaNeural">
     <prosody rate="medium">
-      The highlight for many was undoubtedly the live folk music performances, which saw local artists enthrall audiences with traditional melodies and energetic dance forms.
-      <break time="300ms"/>
-      We caught up with Ms. Anjali Rao, one of the festival organizers, who shared her thoughts on the event's success.
-      <break time="400ms"/>
-      <emphasis level="strong">"Every year, the Gulmohar Utsav grows,"</emphasis> she told us with a beaming smile.
-      <break time="200ms"/>
-      <emphasis level="moderate">"It's more than just a festival; it's a testament to our community's spirit and a platform for our artisans to shine."</emphasis>
-      <break time="750ms"/>
+      <p>
+        Andy Morling, head of the MHRA's criminal enforcement unit, explains that this is a new and unusual production model.
+        <break time="400ms"/>
+        These gangs are investing heavily in <emphasis>designing sophisticated packaging and branding</emphasis>, making their illegal products appear genuine.
+        <break time="800ms"/>
+      </p>
     </prosody>
   </voice>
-
   <voice name="en-IN-PrabhatNeural">
     <prosody rate="medium">
-      Visitors also indulged in a wide array of local delicacies, with street food stalls offering everything from spicy chaat to sweet jalebis, drawing long queues throughout the day.
-      <break time="350ms"/>
-      The aroma of freshly fried pakoras mingled with the sweet scent of gulmohars in full bloom, creating an unforgettable sensory experience.
-      <break time="750ms"/>
+      <p>
+        Morling noted that while they looked like genuine medicines, they were <emphasis>entirely unlicensed and illegal to sell in the UK</emphasis>.
+        <break time="350ms"/>
+        In a recent raid on an illegal factory in Northampton, the MHRA seized tens of thousands of empty weight-loss pens.
+        <break time="850ms"/>
+      </p>
     </prosody>
   </voice>
-
   <voice name="en-IN-NeerjaNeural">
     <prosody rate="medium">
-      Families flocked to the storytelling sessions under the ancient banyan tree, while children enjoyed traditional games and puppet shows.
-      <break time="300ms"/>
-      One first-time visitor, Mr. Ramesh Kumar from a neighboring district, expressed his delight.
-      <break time="400ms"/>
-      <emphasis level="strong">"I've heard so much about Shivpur's Gulmohar Utsav, but experiencing it firsthand is truly special,"</emphasis> he exclaimed.
-      <break time="200ms"/>
-      <emphasis level="moderate">"The warmth of the people, the vibrant atmosphere, and the incredible talent on display—it’s something everyone should see."</emphasis>
-      <break time="750ms"/>
+      <p>
+        They also confiscated over 2,000 already filled, unlicensed pens, preventing them from reaching the market.
+        <break time="300ms"/>
+        Morling emphasized that public safety is their top priority in every case.
+        <break time="650ms"/>
+      </p>
     </prosody>
   </voice>
-
   <voice name="en-IN-PrabhatNeural">
     <prosody rate="medium">
-      The festival concluded with a grand cultural parade, featuring traditional music and dance, followed by a mesmerizing fireworks display over the river, lighting up the night sky.
-      <break time="350ms"/>
-      The Gulmohar Utsav not only brought joy and celebration to Shivpur but also provided a significant boost to local tourism and economy.
-      <break time="400ms"/>
-      It truly underscores the magic of small-town festivals.
-      <break time="750ms"/>
+      <p>
+        The agency is taking a proportionate approach to this growing threat, focusing on <emphasis>removing these dangerous products from circulation</emphasis> to protect consumers.
+      </p>
     </prosody>
   </voice>
-
 </speak>

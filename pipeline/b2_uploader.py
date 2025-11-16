@@ -54,8 +54,6 @@ def check_audio_file(local_path: str):
 
 def upload_file(local_path: str, object_name: str):
     """Upload a verified audio file to B2."""
-    # We'll skip the check_audio_file here since upload_as_hls does it once
-    # and this function is now also used for small segments.
     if not os.path.exists(local_path):
         raise FileNotFoundError(f"⚠️ Internal Error: File not found: {local_path}")
 
@@ -63,30 +61,31 @@ def upload_file(local_path: str, object_name: str):
     bucket = api.get_bucket_by_name(Config.B2_BUCKET_NAME)
 
     # Determine content type based on file extension
-    content_type = "audio/mpeg"  # Default
-    if object_name.endswith(".aac"):
+    ext = os.path.splitext(object_name)[1].lower()
+    if ext == ".aac":
         content_type = "audio/aac"
-    elif object_name.endswith(".m3u8"):
+    elif ext == ".m3u8":
         content_type = "application/vnd.apple.mpegurl"
-
-    file_info = {"Content-Type": content_type}
+    elif ext == ".mp3":
+        content_type = "audio/mpeg"
+    else:
+        content_type = "b2/x-auto"  # let B2 guess
 
     res = bucket.upload_local_file(
         local_file=local_path,
         file_name=object_name,
-        file_infos=file_info
+        content_type=content_type,   # <-- correct usage
+        # file_info={}  # optional if you want custom metadata
     )
 
     file_id = getattr(res, "id_", None) or getattr(res, "file_id", None)
 
-    # We print a summary in the main function, so this can be quieter
-    # print(f"  > Uploaded segment '{object_name}'")
-
     return {
         "file_name": res.file_name,
         "file_id": file_id,
-        "object_name": object_name
+        "object_name": object_name,
     }
+
 
 
 # --- New HLS Orchestrator Function ---

@@ -80,6 +80,46 @@ from sqlalchemy.exc import OperationalError
 from pipeline.config import Config
 import time
 
+def _normalize_embedding(val):
+    """
+    Convert embedding to a Python list[float] suitable for a FLOAT8[] column.
+
+    Handles:
+    - None / NaN -> None
+    - list/tuple -> list[float]
+    - string like "[0.01, 0.02, ...]" or "0.01, 0.02, ..."
+    """
+    if val is None:
+        return None
+
+    # NaN from pandas
+    if isinstance(val, float) and pd.isna(val):
+        return None
+
+    if isinstance(val, (list, tuple)):
+        return [float(x) for x in val]
+
+    if isinstance(val, str):
+        s = val.strip()
+        if not s:
+            return None
+        # Strip [] if present
+        if s[0] == "[" and s[-1] == "]":
+            s = s[1:-1].strip()
+        if not s:
+            return None
+        parts = [p.strip() for p in s.split(",") if p.strip()]
+        try:
+            return [float(p) for p in parts]
+        except ValueError:
+            # If something weird comes through, drop it instead of breaking the pipeline
+            print(f"⚠️ Could not parse embedding string, storing NULL. Sample: {val[:80]!r}")
+            return None
+
+    # Any other type – just ignore and store NULL to avoid blowing up the insert
+    return None
+
+
 def push_articles_to_db(df: pd.DataFrame):
     """
     Pushes DataFrame of articles to CockroachDB with normalized schema.
@@ -122,14 +162,18 @@ def push_articles_to_db(df: pd.DataFrame):
                     articles_df['created_at'] = pd.Timestamp.now()
 
                 topics_data = articles_df.get('topic', pd.Series([[]]*len(articles_df))).tolist()
+
                 # ensure columns for insert (add audio_key)
                 if 'audio_key' not in articles_df.columns:
                     articles_df['audio_key'] = None
 
+                # ensure embedding exists, and normalize to list[float] for FLOAT8[]
                 if 'embedding' not in articles_df.columns:
                     articles_df['embedding'] = None
+                else:
+                    articles_df['embedding'] = articles_df['embedding'].apply(_normalize_embedding)
 
-                insert_cols = ['title', 'description', 'news_source', 'created_at', 'audio_key','embedding']
+                insert_cols = ['title', 'description', 'news_source', 'created_at', 'audio_key', 'embedding']
                 articles_df = articles_df[insert_cols]
 
                 insert_query = text("""
